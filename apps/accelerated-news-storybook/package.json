@@ -13,6 +13,7 @@
     "lint:fix": "npm run lint -- --fix"
   },
   "dependencies": {
+    "@accelerated-news/accelerated-news": "*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

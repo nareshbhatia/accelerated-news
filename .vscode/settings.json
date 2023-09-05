@@ -4,8 +4,11 @@
     "clsx",
     "commitlint",
     "copyfiles",
+    "hookform",
     "nextjs",
     "postdeploy",
+    "signin",
+    "tanstack",
     "tsup",
     "turborepo"
   ],

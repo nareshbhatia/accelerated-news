@@ -42,7 +42,6 @@
     "_lint:root:fix": "npm run --silent _lint:root -- --fix"
   },
   "devDependencies": {
-    "@code-shaper/plugin": "^1.1.1",
     "@code-shaper/react": "^1.1.4",
     "@commitlint/cz-commitlint": "^17.5.0",
     "@typescript-eslint/eslint-plugin": "^5.61.0",

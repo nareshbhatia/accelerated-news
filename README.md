@@ -1,6 +1,13 @@
 # Accelerated News
 
-This repository was bootstrapped with [Code Shaper](https://code-shaper.dev).
+This repository was bootstrapped with [Code Shaper](https://code-shaper.dev). It
+is an sample News site with some content available publicly, while other content
+only available to authenticated users.
+
+![Screen Shot](assets/screenshot.png)
+
+> Previous version of this app was built using create-react-app. You can find it
+> [here](https://github.com/PublicisSapient/accelerated-news).
 
 ## Prerequisites for development
 

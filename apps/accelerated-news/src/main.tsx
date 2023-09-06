@@ -1,9 +1,22 @@
 import { App } from './App';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+// import { ReactQueryDevtools } from '@tanstack/react-query/devtools';
 import { AuthStateContextProvider } from './components/AuthStateContextProvider';
+import { ErrorBoundary } from './components/ErrorBoundary';
+import { Loading } from './components/Loading';
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter as Router } from 'react-router-dom';
+import './services/AxiosInterceptors';
 import './styles/main.css';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 // Start mock service worker in dev environment
 async function startMockServiceWorker() {
@@ -20,11 +33,17 @@ startMockServiceWorker()
     const root = createRoot(document.getElementById('root')!);
     root.render(
       <React.StrictMode>
-        <AuthStateContextProvider>
-          <Router>
-            <App />
-          </Router>
-        </AuthStateContextProvider>
+        <React.Suspense fallback={<Loading />}>
+          <ErrorBoundary>
+            <QueryClientProvider client={queryClient}>
+              <AuthStateContextProvider>
+                <Router>
+                  <App />
+                </Router>
+              </AuthStateContextProvider>
+            </QueryClientProvider>
+          </ErrorBoundary>
+        </React.Suspense>
       </React.StrictMode>
     );
     return true;

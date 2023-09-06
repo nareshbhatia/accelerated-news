@@ -1,0 +1,52 @@
+import React, { forwardRef, Fragment } from 'react';
+import { ErrorMessage } from './ErrorMessage';
+import './TextAreaField.css';
+
+export interface TextAreaFieldProps {
+  /** used to make label and errorText accessible for screen readers */
+  id?: string;
+
+  /** used to create data-testid property on element for testing */
+  testId?: string;
+
+  /** passed directly to the textarea element */
+  name?: string;
+
+  /** the label content */
+  label?: React.ReactNode;
+
+  /** passed directly to the textarea element */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ref?: React.Ref<any>;
+
+  /** error text */
+  error?: string;
+
+  /** # of rows */
+  rows?: number;
+
+  onBlur?: (e: React.FocusEvent<HTMLTextAreaElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+}
+
+export const TextAreaField = forwardRef<
+  HTMLTextAreaElement,
+  TextAreaFieldProps
+>(({ id, testId, name, label, error, rows = 2, onBlur, onChange }, ref) => {
+  return (
+    <Fragment>
+      {label !== undefined ? <label htmlFor={id}>{label}</label> : null}
+      <textarea
+        id={id}
+        data-testid={testId}
+        name={name}
+        ref={ref}
+        className="textarea-field__input"
+        rows={rows}
+        onBlur={onBlur}
+        onChange={onChange}
+      />
+      <ErrorMessage error={error} />
+    </Fragment>
+  );
+});

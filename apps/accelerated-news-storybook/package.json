@@ -14,8 +14,10 @@
   },
   "dependencies": {
     "@accelerated-news/accelerated-news": "*",
+    "@tanstack/react-query": "^4.33.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.15.0"
   },
   "devDependencies": {
     "@storybook/addon-a11y": "^7.0.23",

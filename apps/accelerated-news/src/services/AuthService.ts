@@ -15,7 +15,8 @@ const removeAccessToken = () => {
   Storage.remove(TOKEN_KEY);
 };
 
-const getSignInRedirectPath = () => Storage.get(SIGN_IN_REDIRECT_KEY, '/');
+const getSignInRedirectPath = () =>
+  Storage.get(SIGN_IN_REDIRECT_KEY, '/') as string;
 
 const setSignInRedirectPath = (path: string) => {
   Storage.set(SIGN_IN_REDIRECT_KEY, path);

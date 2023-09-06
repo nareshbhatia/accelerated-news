@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header /> should render correctly 1`] = `
+<DocumentFragment>
+  <header
+    class="bg-primary-main"
+  >
+    <div
+      class="container"
+    >
+      <nav
+        class="navbar"
+      >
+        <span
+          class="navbar__brand mobile"
+        >
+          News
+        </span>
+        <span
+          class="navbar__brand desktop"
+        >
+          Accelerated News
+        </span>
+        <ul
+          class="flex-1"
+        >
+          <li>
+            <a
+              aria-current="page"
+              class="navbar__link active"
+              href="/"
+            >
+              Headlines
+            </a>
+          </li>
+          <li>
+            <a
+              class="navbar__link"
+              href="/sports"
+            >
+              Sports
+            </a>
+          </li>
+        </ul>
+        <button
+          aria-label="Sign in"
+          class="navbar__signin btn-sm"
+        >
+          Sign in
+        </button>
+      </nav>
+    </div>
+  </header>
+</DocumentFragment>
+`;

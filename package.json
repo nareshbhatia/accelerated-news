@@ -1,11 +1,11 @@
 {
   "name": "accelerated-news",
-  "description": "",
+  "description": "Sample news site created with Code Shaper",
   "version": "0.0.1",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/accelerated-news/accelerated-news"
+    "url": "https://github.com/nareshbhatia/accelerated-news"
   },
   "workspaces": [
     "apps/*",

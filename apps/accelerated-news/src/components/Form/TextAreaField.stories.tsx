@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Story, Meta } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
@@ -44,25 +44,27 @@ function TestForm({ onSubmit }: TestFormProps) {
   );
 }
 
-export default {
+const meta = {
   title: 'Forms/TextAreaField',
   component: TextAreaField,
-} as Meta;
+  tags: ['autodocs'],
+} satisfies Meta<typeof TextAreaField>;
 
-const Template: Story = () => {
-  const [person, setPerson] = useState<Person>();
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-  return (
-    <div style={{ width: 320 }}>
-      <TestForm onSubmit={setPerson} />
-      <div className="mt-2">
-        <h4 className="m-0">Form value</h4>
-        <p>{person?.bio}</p>
+export const Default = {
+  render: () => {
+    const [person, setPerson] = useState<Person>();
+
+    return (
+      <div style={{ width: 320 }}>
+        <TestForm onSubmit={setPerson} />
+        <div className="mt-2">
+          <h4 className="m-0">Form value</h4>
+          <p>{person?.bio}</p>
+        </div>
       </div>
-    </div>
-  );
-};
-
-export const TextAreaFieldStory = Template.bind({});
-TextAreaFieldStory.storyName = 'TextAreaField';
-TextAreaFieldStory.args = {};
+    );
+  },
+} satisfies Story;

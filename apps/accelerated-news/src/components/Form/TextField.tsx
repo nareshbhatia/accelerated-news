@@ -1,50 +1,41 @@
-import React, { forwardRef, Fragment } from 'react';
 import { ErrorMessage } from './ErrorMessage';
+import { clsx } from 'clsx';
+import type { Ref } from 'react';
+import { forwardRef } from 'react';
 import './TextField.css';
 
-export interface TextFieldProps {
-  /** used to make label and errorText accessible for screen readers */
-  id?: string;
+export type ReactInputProps = React.InputHTMLAttributes<HTMLInputElement>;
 
+export interface TextFieldProps extends ReactInputProps {
   /** used to create data-testid property on element for testing */
   testId?: string;
-
-  /** passed directly to the input element */
-  name?: string;
 
   /** the label content */
   label?: React.ReactNode;
 
-  /** the input type (defaults to text) */
-  type?: string;
-
   /** error text */
   error?: string;
-
-  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
-  (
-    { id, testId, name, label, type = 'text', error, onBlur, onChange },
-    ref
-  ) => {
-    return (
-      <Fragment>
-        {label !== undefined ? <label htmlFor={id}>{label}</label> : null}
-        <input
-          id={id}
-          data-testid={testId}
-          name={name}
-          type={type}
-          ref={ref}
-          className="text-field__input"
-          onBlur={onBlur}
-          onChange={onChange}
-        />
-        <ErrorMessage error={error} />
-      </Fragment>
-    );
-  }
-);
+export function TextFieldInner(
+  { className, id, error, label, testId, ...props }: TextFieldProps,
+  ref: Ref<HTMLInputElement>
+) {
+  const styles = clsx(className, 'text-field__input');
+
+  return (
+    <>
+      {label !== undefined ? <label htmlFor={id}>{label}</label> : null}
+      <input
+        className={styles}
+        data-testid={testId}
+        id={id}
+        ref={ref}
+        {...props}
+      />
+      <ErrorMessage error={error} />
+    </>
+  );
+}
+
+export const TextField = forwardRef(TextFieldInner);

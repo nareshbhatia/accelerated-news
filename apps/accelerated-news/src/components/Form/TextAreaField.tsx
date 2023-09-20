@@ -1,52 +1,42 @@
-import React, { forwardRef, Fragment } from 'react';
 import { ErrorMessage } from './ErrorMessage';
+import { clsx } from 'clsx';
+import type { Ref } from 'react';
+import { forwardRef } from 'react';
 import './TextAreaField.css';
 
-export interface TextAreaFieldProps {
-  /** used to make label and errorText accessible for screen readers */
-  id?: string;
+export type ReactTextAreaProps =
+  React.TextareaHTMLAttributes<HTMLTextAreaElement>;
 
+export interface TextAreaFieldProps extends ReactTextAreaProps {
   /** used to create data-testid property on element for testing */
   testId?: string;
-
-  /** passed directly to the textarea element */
-  name?: string;
 
   /** the label content */
   label?: React.ReactNode;
 
-  /** passed directly to the textarea element */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  ref?: React.Ref<any>;
-
   /** error text */
   error?: string;
-
-  /** # of rows */
-  rows?: number;
-
-  onBlur?: (e: React.FocusEvent<HTMLTextAreaElement>) => void;
-  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-export const TextAreaField = forwardRef<
-  HTMLTextAreaElement,
-  TextAreaFieldProps
->(({ id, testId, name, label, error, rows = 2, onBlur, onChange }, ref) => {
+export function TextAreaFieldInner(
+  { className, id, error, label, testId, ...props }: TextAreaFieldProps,
+  ref: Ref<HTMLTextAreaElement>
+) {
+  const styles = clsx(className, 'textarea-field__input');
+
   return (
-    <Fragment>
+    <>
       {label !== undefined ? <label htmlFor={id}>{label}</label> : null}
       <textarea
-        id={id}
+        className={styles}
         data-testid={testId}
-        name={name}
+        id={id}
         ref={ref}
-        className="textarea-field__input"
-        rows={rows}
-        onBlur={onBlur}
-        onChange={onChange}
+        {...props}
       />
       <ErrorMessage error={error} />
-    </Fragment>
+    </>
   );
-});
+}
+
+export const TextAreaField = forwardRef(TextAreaFieldInner);

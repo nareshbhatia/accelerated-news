@@ -9,6 +9,7 @@
     "postdeploy",
     "signin",
     "tanstack",
+    "testid",
     "tsup",
     "turborepo"
   ],
